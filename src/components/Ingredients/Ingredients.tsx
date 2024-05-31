@@ -4,6 +4,8 @@ interface Ingredients {
     name: string,
     count: number,
     image: string,
+    increaseIngredient: React.MouseEventHandler;
+    deleteIngredients: React.MouseEventHandler;
 }
 
 const IngredientsForBurger: React.FC<Ingredients> = (
@@ -11,16 +13,18 @@ const IngredientsForBurger: React.FC<Ingredients> = (
         name,
         count,
         image,
+        increaseIngredient,
+        deleteIngredients,
     }) => {
     return (
             <div className="ingredient">
-                <img src={image} alt={name}/>
-                <strong>{name}</strong>
+                <img src={image} alt={name} onClick={increaseIngredient}/>
+                <strong onClick={increaseIngredient}>{name}</strong>
                 <strong>x{count}</strong>
                 {count === 0 ?
                     <></>
                     :
-                    <button>
+                    <button onClick={deleteIngredients}>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
                              viewBox="0 0 24 24">
                             <path
