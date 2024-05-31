@@ -6,6 +6,7 @@ import baconImage from "../assets/baconImg.png";
 import meatImage from "../assets/meatImg.png";
 import {useState} from "react";
 import Ingredients from "../components/Ingredients/Ingredients";
+import Burger from "../components/Burger/Burger";
 
 const App = () => {
     const INGREDIENTS: Ingredient[] = [
@@ -46,6 +47,15 @@ const App = () => {
             });
         });
     };
+
+    const price:number = ingredientsList.reduce((acc, value) => {
+        if (value.count === 0) {
+            return acc;
+        } else {
+            return acc + (value.price * value.count);
+        }
+    }, 30);
+
     return (
         <div className="menu">
             <div className="chooseIngredients">
@@ -67,7 +77,11 @@ const App = () => {
                         <div className="Seeds1"></div>
                         <div className="Seeds2"></div>
                     </div>
+                    <Burger ingredientsForBurger={ingredients}/>
                     <div className="BreadBottom"></div>
+                </div>
+                <div>
+                    <strong className="price">Price: {price}</strong>
                 </div>
             </div>
         </div>
